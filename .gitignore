@@ -1,0 +1,171 @@
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Xx]64/
+[Xx]86/
+
+# Executable files
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.o
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+nuget.config
+*.lock.json
+
+# ReSharper
+.resharper
+*.resharper
+*.resharper.user
+_ReSharper*/
+*/_ReSharper*/
+*.ReSharper.user
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+
+# Build artifacts
+artifacts/
+publish/
+*.pdb
+
+# OS
+Thumbs.db
+.DS_Store
+*.lnk
+desktop.ini
+
+# IDE
+*.sln.iml
+.idea/
+*.iws
+*.iml
+
+# Environment
+.env
+.env.local
+appsettings.local.json
+
+# Logs
+logs/
+*.log
+
+# Large data files
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+data/
+datasets/
+*.db
+*.sqlite
+*.mdf
+*.ldf
+*.bak
+
+# Temporary files
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+*.tempuser
+
+# User-specific files
+launchSettings.json
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Node (if using frontend tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python (if using any Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Coverage
+coverage/
+*.coverage
+htmlcov/
+
+# Ollama models (can be large)
+ollama/
+models/
+
+# Local database files
+*.mdf
+*.ldf
+App_Data/
+
+# Visual Studio profiling
+*.psess
+*.vsp
+
+# Miscellaneous
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.history/

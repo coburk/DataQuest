@@ -1,0 +1,2 @@
+-- Database creation script for DataQuest
+-- This script will be populated with database creation logic

@@ -1,0 +1,2 @@
+-- Seed data script for DataQuest
+-- This script will be populated with initial data
