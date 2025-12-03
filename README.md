@@ -16,6 +16,7 @@ A coordinated group of AI agents supports the process. These agents plan each ca
 - **Contributing:** See [Contributing.md](Contributing.md) for guidelines
 - **Project Structure:** See [Project Structure Visual.md](Project%20Structure%20Visual.md) for directory layout
 - **Design Docs:** See [docs/README.md](docs/README.md) for all documentation
+- **📋 OFFICIAL ROADMAP:** See [docs/design-and-planning/Development Roadmap - DataQuest.md](docs/design-and-planning/Development%20Roadmap%20-%20DataQuest.md) **← START HERE FOR DEVELOPMENT**
 
 ---
 
