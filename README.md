@@ -1,4 +1,4 @@
-# DataQuest
+# DataQuest: SQL Detective
 
 ### A story-driven SQL investigation tool for learning through insight, reasoning, and discovery.
 
@@ -8,220 +8,321 @@ A coordinated group of AI agents supports the process. These agents plan each ca
 
 ---
 
-# Features
+## Quick Links
 
-### Story-driven SQL cases
+- **Getting Started:** See [00 Start Here.md](00%20Start%20Here.md)
+- **Setup Guide:** See [Setup.md](Setup.md) for local development setup
+- **Architecture:** See [Architecture.md](Architecture.md) for system design
+- **Contributing:** See [Contributing.md](Contributing.md) for guidelines
+- **Project Structure:** See [Project Structure Visual.md](Project%20Structure%20Visual.md) for directory layout
+- **Design Docs:** See [docs/README.md](docs/README.md) for all documentation
+
+---
+
+## Project Status
+
+### ✅ Completed
+- Project structure and directory organization
+- Naming conventions established and documented
+- Design and planning documentation
+- Architecture specification
+- Testing strategy
+- Configuration templates
+
+### 🔄 In Progress
+- Phase 1: Domain Models (Starting Soon)
+
+### 📋 Planned
+- Phase 2: Database Layer
+- Phase 3: MCP Integration
+- Phase 4: Pipeline Services
+- Phase 5: AI Agents
+- Phase 6: UI Layer
+- Phase 7: Testing & Deployment
+
+---
+
+## Features
+
+### Story-driven SQL Cases
 
 Students solve cases built from people, evidence, locations, timelines, and witness statements.
 
-### AI-supported learning
+### AI-Supported Learning
 
 A set of small, focused AI agents work together through the MCP to help guide the investigation.
 
-### Gentle Socratic hints
+### Gentle Socratic Hints
 
 The Query Tutor Agent asks guiding questions instead of giving away the answer.
 
-### Safe and transparent architecture
+### Safe and Transparent Architecture
 
 The MCP provides controlled, read-only database access so students learn with real data without risk.
 
-### Clear and approachable UI
+### Clear and Approachable UI
 
 Simple interfaces for students, instructors, and administrators keep the focus on learning.
 
 ---
 
-# AI Agents
+## AI Agents
 
 DataQuest uses four specialized agents, each with a specific role.
 
-* **Database Agent**
-  Converts schema and table structures into natural language explanations.
+- **Database Agent**
+  - Converts schema and table structures into natural language explanations
+  - Caches schema descriptions for reuse
 
-* **Case Planner Agent**
-  Designs case structure and keeps the narrative consistent.
+- **Case Planner Agent**
+  - Designs case structure and keeps the narrative consistent
+  - Tests queries to ensure cases are solvable
 
-* **Query Tutor Agent**
-  Gives hints and guiding questions. Encourages students to reason and discover.
+- **Query Tutor Agent**
+  - Compares student queries against canonical answers
+  - Provides multi-level Socratic hints
+  - Tracks hint level per investigation step
 
-* **SQL Enforcer Agent**
-  Checks timelines, contradictions, and logical consistency of student conclusions.
+- **SQL Enforcer Agent**
+  - Validates case logic and consistency
+  - Checks for contradictions in evidence
+  - Verifies cases are truly solvable
 
 ---
 
-# How It Works
+## How It Works
 
 Every investigation follows two simple cycles.
 
-### System Cycle
+### System Cycle: Plan → Verify → Tutor
 
-Plan, Verify, Tutor
+- The Case Planner sets the structure
+- The SQL Enforcer checks claims
+- The Query Tutor provides guidance
 
-* The Case Planner sets the structure
-* The SQL Enforcer checks claims
-* The Query Tutor provides guidance
+### Student Cycle: Insight → Reasoning → Discovery
 
-### Student Cycle
-
-Insight, Reasoning, Discovery
-
-* Students collect clues
-* Test hypotheses with SQL
-* Resolve contradictions
-* Reach their own conclusions
+- Students collect clues
+- Test hypotheses with SQL
+- Resolve contradictions
+- Reach their own conclusions
 
 These cycles create a learning environment that feels natural and investigative.
 
 ---
 
-# Technology Stack
+## Technology Stack
 
 DataQuest uses tools that are easy to set up, transparent, and accessible.
 
-* Language and Framework: C Sharp (.NET 9, WinForms)
-* Database: Local MSSQL Server
-* AI Runtime: Ollama (Llama 3.1 8B or Mistral 7B)
-* Communication Layer: Model Context Protocol (MCP)
-* Development Tools: Visual Studio, GitHub Copilot
-* Testing and Logging: xUnit, Serilog
+- **Language & Framework:** C# (.NET 9, WinForms)
+- **Database:** SQL Server (LocalDB for development)
+- **AI Runtime:** Ollama (Local LLM - Llama 3.1 8B or Mistral 7B)
+- **Communication:** Model Context Protocol (MCP) with JSON-RPC 2.0
+- **Development:** Visual Studio 2022, GitHub Copilot
+- **Testing & Logging:** xUnit, Moq, Serilog
+- **ORM:** Entity Framework Core 9.0
 
 ---
 
-# Screenshots
-
-Place your screenshots here. Suggested images:
-
-* Student Interface
-* Instructor Interface
-* Schema and Case Browser
-* AI Agent Monitor
-* Case Overview Dashboard
-* Login Screen
-
----
-
-# Directory Structure
-
-This is a suggested structure. Adjust as needed.
+## Current Directory Structure
 
 ```
-/DataQuest
-    /src
-        /DataQuest.App
-        /DataQuest.Agents
-        /DataQuest.Database
-        /DataQuest.Models
-        /DataQuest.Services
-    /docs
-        diagrams/
-        ui-mockups/
-        proposal/
-    /sql
-        create_dataquest_db.sql
-        seed_data.sql
-    /artifacts
-        ai-agent-icons/
-        workflows/
-    README.md
+DataQuest/
+├── .github/workflows/  # CI/CD pipelines (ready for setup)
+├── config/         # Configuration templates
+│   ├── appsettings.json
+│   ├── agent-endpoints.json
+│   └── user-preferences.json
+├── docs/       # Documentation (flattened structure)
+│   ├── design-and-planning/    # Design specifications
+│   ├── diagrams/        # Architecture diagrams
+│   ├── research/    # Research materials
+│   ├── proposal/        # Capstone proposal
+│   ├── ui-mockups/          # UI mockups
+│   ├── artifacts/          # Visual assets
+│   ├── process-documentation/  # Restructuring documentation
+│   └── README.md      # Documentation index
+├── sql/      # Database scripts
+│   ├── create_dataquest_db.sql
+│   ├── seed_data.sql
+│   └── migrations/
+├── src/    # Production source code
+│   ├── DataQuest.Models/
+│   ├── DataQuest.Database/
+│   ├── DataQuest.Services/
+│   ├── DataQuest.Orchestration/
+│   ├── DataQuest.Mcp/
+│   ├── DataQuest.Agents/
+│   └── DataQuest.App/
+├── tests/                  # Test projects
+│   ├── DataQuest.Tests.Unit/
+│   ├── DataQuest.Tests.Integration/
+│└── DataQuest.Tests.Data/
+│       ├── case-plans/
+│       ├── llm-prompts/
+│       ├── data-seed/
+│       ├── schemas/
+│       └── sql-examples/
+├── tools/             # Utility scripts
+│
+├── 00 Start Here.md       # Entry point - READ FIRST
+├── Architecture.md         # System architecture
+├── Setup.md      # Development setup guide
+├── Contributing.md        # Contribution guidelines
+├── Project Structure Visual.md  # Detailed structure reference
+│
+├── .editorconfig    # Code style rules
+├── global.json      # .NET 9 SDK version
+├── Directory.Build.props  # Shared build settings
+└── DataQuest.sln          # Solution file (to be created)
 ```
 
 ---
 
-# Installation
+## Getting Started
 
-### 1. Clone the repository
+### Prerequisites
 
-```
-git clone https://github.com/yourusername/DataQuest.git
-cd DataQuest
-```
+- .NET 9 SDK (download from [dotnet.microsoft.com](https://dotnet.microsoft.com/download))
+- Visual Studio 2022 (Community Edition minimum)
+- SQL Server (LocalDB or full installation)
+- Ollama (download from [ollama.com](https://ollama.com))
 
-### 2. Set up MSSQL
+### Installation
 
-* Install a local SQL Server instance
-* Run the SQL scripts in the sql folder
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/coburk/DataQuest.git
+   cd DataQuest
+   ```
 
-  * create_dataquest_db.sql
-  * seed_data.sql
+2. **Follow Setup.md**
+   ```bash
+   See Setup.md for detailed development environment setup
+   ```
 
-### 3. Install Ollama
+3. **Configure Ollama**
+   ```bash
+   ollama pull llama3:8b-instruct
+   ollama serve
+   ```
 
-Download from [https://ollama.com](https://ollama.com)
+4. **Review Documentation**
+   - Start: `00 Start Here.md`
+   - Architecture: `Architecture.md`
+   - Naming Standards: `docs/design-and-planning/Naming Conventions Guide - DataQuest.md`
 
-Install the model:
+### Quick Links for Developers
 
-```
-ollama pull llama3.1:8b
-```
-
-### 4. Launch the WinForms application
-
-Open the solution in Visual Studio
-Run the project
-
----
-
-# Usage
-
-* Select a case
-* Review the evidence, people, locations, and timelines
-* Run SQL queries to test your hypotheses
-* Use the Query Tutor Agent when you need guidance
-* Follow the steps in the case until you reach a conclusion
-* Review your reasoning and compare it with the answer key
-
----
-
-# Roadmap
-
-### Short Term
-
-* Finish core student interface
-* Add more cases
-* Expand the hint system
-* Improve schema explanations
-
-### Medium Term
-
-* Instructor grading tools
-* Case versioning and authoring tools
-* Additional AI guardrails
-
-### Long Term
-
-* Larger investigation themes
-* More advanced agent collaboration
-* Expansion to other subjects that benefit from guided reasoning
+- **Starting Development?** → See `00 Start Here.md`
+- **Setting up environment?** → See `Setup.md`
+- **Understand the architecture?** → See `Architecture.md`
+- **Contributing code?** → See `Contributing.md`
+- **Naming conventions?** → See `docs/design-and-planning/Naming Conventions Guide - DataQuest.md`
+- **Need design specs?** → See `docs/design-and-planning/`
 
 ---
 
-# Contributing
+## Usage
 
-Pull requests are welcome.
-Open an issue for discussions about larger changes.
-
----
-
-# License
-
-MIT License (or your preferred license)
+1. Select a case from the case browser
+2. Review the evidence, people, locations, and timelines
+3. Write SQL queries to test your hypotheses
+4. Use the Query Tutor Agent when you need guidance
+5. Follow the steps in the case until you reach a conclusion
+6. Review your reasoning and compare it with the answer key
 
 ---
 
-# Acknowledgments
+## Development Roadmap
 
-This project is part of a capstone for the Master of Applied Artificial Intelligence.
-Thank you to the faculty, peers, and mentors who provided guidance during design and development.
+### Phase 1: Domain Models (STARTING)
+- Implement domain model classes
+- Create data transfer objects
+- Set up type safety and contracts
+
+### Phase 2: Database Layer (PLANNED)
+- Entity Framework Core setup
+- Database context and entities
+- Repository pattern implementation
+
+### Phase 3: MCP Integration (PLANNED)
+- MCP Server implementation
+- MCP Client in main application
+- Tool exposure and safety
+
+### Phase 4: Pipeline Services (PLANNED)
+- Query validation service
+- Case manager
+- Hint generator
+
+### Phase 5: AI Agents (PLANNED)
+- Implement four specialized agents
+- Agent orchestration
+- LLM integration with Ollama
+
+### Phase 6: UI Layer (PLANNED)
+- WinForms application
+- Student interface
+- Instructor/Admin interfaces
+
+### Phase 7: Testing & Deployment (PLANNED)
+- Comprehensive test suites
+- CI/CD pipelines
+- Deployment automation
 
 ---
 
-If you want, I can also generate:
+## Project Standards
 
-* a section with badges
-* a short animated GIF workflow graphic
-* versioning and build instructions
-* a CONTRIBUTORS.md
-* a clean LICENSE file
+- **Naming:** Title Case for files and directories (see `Naming Conventions Guide`)
+- **Code Style:** C# conventions defined in `.editorconfig`
+- **Framework:** .NET 9 (specified in `global.json`)
+- **Testing:** xUnit and Moq
+- **Logging:** Serilog
+- **Documentation:** Markdown in `docs/` folder
 
-Just let me know what you want next.
+---
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Read `Contributing.md` for guidelines
+2. Create a feature branch: `git checkout -b feature/your-feature-name`
+3. Follow the naming conventions in `Naming Conventions Guide`
+4. Add tests for new functionality
+5. Submit a pull request with clear description
+
+For major changes, please open an issue first to discuss the proposed changes.
+
+---
+
+## License
+
+MIT License - See LICENSE file for details
+
+---
+
+## Acknowledgments
+
+This project is part of a Master of Applied Artificial Intelligence capstone.
+
+Thank you to:
+- Faculty advisors for guidance and feedback
+- The open-source community for tools and libraries
+- Contributors and collaborators
+
+---
+
+## Contact & Support
+
+- **Issues & Bugs:** Open a GitHub issue
+- **Discussions:** Use GitHub Discussions
+- **Documentation:** See `docs/` folder and root-level documentation files
+
+---
+
+**Last Updated:** December 2025  
+**Status:** Project initialization and planning complete - Ready for Phase 1 development
