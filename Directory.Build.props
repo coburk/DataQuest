@@ -1,0 +1,24 @@
+<Project>
+  <!-- Shared build properties for all projects -->
+  
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+  <Company>DataQuest</Company>
+  <Description>DataQuest: SQL Detective - AI-Powered Learning Platform</Description>
+    <Authors>DataQuest Contributors</Authors>
+    <RepositoryUrl>https://github.com/coburk/DataQuest</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.0-alpha</Version>
+  </PropertyGroup>
+
+  <!-- Analyzer configuration -->
+  <ItemGroup>
+    <CompilerVisibleProperty Include="GitCommit" />
+  </ItemGroup>
+</Project>

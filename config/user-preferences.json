@@ -1,0 +1,14 @@
+{
+  "Theme": {
+    "ColorMode": "Dark"
+  },
+  "Window": {
+    "LastPositionX": 0,
+    "LastPositionY": 0,
+    "LastWidth": 1024,
+    "LastHeight": 768
+  },
+  "Tutor": {
+    "AutomaticHintCooldownSeconds": 10
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "OllamaEndpoint": {
+    "Url": "http://localhost:11434",
+    "ModelName": "llama3:8b-instruct"
+  },
+  "MCPServer": {
+    "Protocol": "stdio",
+    "ExecutablePath": "C:\\DataQuest\\MCP\\server.exe"
+  },
+  "AITimeouts": {
+    "InferenceTimeoutSeconds": 15,
+    "QueryTimeoutSeconds": 10
+  }
+}
