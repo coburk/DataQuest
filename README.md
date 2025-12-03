@@ -237,92 +237,184 @@ DataQuest/
 
 ## Development Roadmap
 
-### Phase 1: Domain Models (STARTING)
-- Implement domain model classes
+### 10-Week MVP Timeline
+
+DataQuest follows a **10-week Minimum Viable Product (MVP)** timeline aligned with the capstone requirements. This roadmap delivers core functionality within this timeframe for a local, offline-capable SQL investigation system.
+
+**MVP Scope:**
+- Local, offline-capable system with SQL Server and Ollama
+- Four specialized AI agents for case generation, validation, and tutoring
+- Student investigative experience and UI
+- One complete case narrative from start to finish
+
+**Out of Scope (Future Expansion):**
+- Instructor/Admin case creation interfaces (deferred to future phases)
+- Cloud deployment and web hosting
+- CI/CD pipeline automation
+- Performance metrics and academic evaluation
+- Additional investigative themes beyond SQL
+
+---
+
+### Phase 1: Domain Models (US-Data)
+**Objective:** Establish the foundational data structures
+
+- Implement investigative data models (Person, Location, Evidence, Communication)
+- Implement agent control models (CasePlan, StoryStep, AnswerKey)
+- Implement workflow models (QuerySubmissionResult, HintContext, MCPRequest)
+- Create strongly-typed C# POCOs for type safety
 - Create data transfer objects
-- Set up type safety and contracts
 
-### Phase 2: Database Layer (PLANNED)
-- Entity Framework Core setup
-- Database context and entities
-- Repository pattern implementation
+**Success Criteria:** All models compile, type-safe, ready for database and agent integration
 
-### Phase 3: MCP Integration (PLANNED)
-- MCP Server implementation
-- MCP Client in main application
-- Tool exposure and safety
+---
 
-### Phase 4: Pipeline Services (PLANNED)
-- Query validation service
-- Case manager
-- Hint generator
+### Phase 2: Data Infrastructure (US-01, US-02, US-03)
+**Objective:** Establish secure local database access
 
-### Phase 5: AI Agents (PLANNED)
-- Implement four specialized agents
-- Agent orchestration
-- LLM integration with Ollama
+**Components:**
+- Entity Framework Core setup and DbContext configuration
+- Database entities and schema creation
+- **MCP Server implementation** (C# service process)
+  - Expose `schema.describe` tool
+  - Expose `sql.execute_readonly` tool
+  - JSON-RPC 2.0 protocol implementation
+- SQLConnector for application database operations
+- Safety validation for read-only enforcement
 
-### Phase 6: UI Layer (PLANNED)
+**User Stories:**
+- US-01: Local environment setup
+- US-02: Secure database access via MCP
+- US-03: Student query execution with safety
+
+**Success Criteria:** Database initializes, MCP Server responds to tool calls, queries execute safely
+
+---
+
+### Phase 3: MCP Client Integration (US-02, US-03)
+**Objective:** Connect application to MCP Server
+
+**Components:**
+- MCPClient for AI-to-MCP communication
+- JSON-RPC 2.0 message handling
+- Tool invocation and response processing
+- Error handling and retry logic
+
+**User Stories:**
+- US-02: MCP client for database queries
+- US-03: Integration with query execution
+
+**Success Criteria:** Application can call MCP tools, receives correct responses, handles errors gracefully
+
+---
+
+### Phase 4: Pipeline Services & Orchestration (US-03, US-05, US-06, US-07)
+**Objective:** Implement core workflows and orchestration
+
+**Components:**
+- **QueryValidator service** - Safety checks, prevent unsafe SQL
+- **CaseManager service** - Load, store, and manage cases
+- **HintGenerator service** - Multi-level Socratic hint generation
+- **AgentOrchestrator** - Traffic controller managing agent calls and sequencing
+- **Three Core Pipelines:**
+  - Query Submission Pipeline (student query → validation → execution → comparison)
+  - Case Loading Pipeline (JSON → deserialization → validation → ready state)
+  - Hint Generation Pipeline (context aggregation → LLM inference → delivery)
+
+**User Stories:**
+- US-03: Query validation and execution
+- US-05: Query comparison against canonical answers
+- US-06: Hint generation and delivery
+- US-07: Case loading and management
+
+**Success Criteria:** Pipelines execute end-to-end, cases load correctly, hints generate appropriately
+
+---
+
+### Phase 5: AI Agents (US-04, US-05, US-06, US-07, US-08)
+**Objective:** Implement four specialized AI agents
+
+**Agents:**
+- **Database Agent** (US-04)
+  - Translates schema to natural language
+  - Caches descriptions for reuse
+  
+- **Case Planner Agent** (US-07)
+  - Generates solvable investigative cases
+  - Tests queries to ensure correctness
+  - Creates case structure and narrative
+  
+- **Query Tutor Agent** (US-05, US-06)
+  - Compares student queries to canonical answers
+  - Provides multi-level Socratic hints
+  - Tracks hint progression
+  
+- **SQL Enforcer Agent** (US-08)
+  - Validates case logic and consistency
+  - Checks for contradictions
+  - Verifies solvability
+
+**Integration:**
+- OllamaInterface for LLM communication
+- MCPClient for database access
+- AgentOrchestrator for sequencing
+
+**Success Criteria:** All four agents functioning, Ollama integration working, agents respond to orchestrator calls
+
+---
+
+### Phase 6: Student Interface (US-09)
+**Objective:** Deliver complete student investigative experience
+
+**Components:**
 - WinForms application
-- Student interface
-- Instructor/Admin interfaces
+- SQL Editor for query entry
+- Results Grid for output display
+- Schema Browser for reference data
+- Hint Panel for Socratic guidance
+- Case Navigator for step tracking
+- Log Panel for system information
 
-### Phase 7: Testing & Deployment (PLANNED)
-- Comprehensive test suites
-- CI/CD pipelines
-- Deployment automation
+**User Story:**
+- US-09: Guide student through complete investigative case
 
----
+**Note:** Instructor/Admin interfaces are deferred to future expansion phases
 
-## Project Standards
-
-- **Naming:** Title Case for files and directories (see `Naming Conventions Guide`)
-- **Code Style:** C# conventions defined in `.editorconfig`
-- **Framework:** .NET 9 (specified in `global.json`)
-- **Testing:** xUnit and Moq
-- **Logging:** Serilog
-- **Documentation:** Markdown in `docs/` folder
+**Success Criteria:** Student can complete one full case from start to finish, all UI elements responsive
 
 ---
 
-## Contributing
+### Phase 7: Integration Testing & Documentation (Testing Throughout)
+**Objective:** Verify system functionality and document knowledge
 
-We welcome contributions! Please follow these steps:
+**Components:**
+- Unit tests for models, services, agents
+- Integration tests for pipelines
+- End-to-end tests for complete case scenarios
+- Documentation of architecture, APIs, and processes
+- Knowledge transfer and developer guides
 
-1. Read `Contributing.md` for guidelines
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Follow the naming conventions in `Naming Conventions Guide`
-4. Add tests for new functionality
-5. Submit a pull request with clear description
+**Note:** Testing occurs throughout all phases (not just at the end). This phase focuses on comprehensive verification and final polish.
 
-For major changes, please open an issue first to discuss the proposed changes.
-
----
-
-## License
-
-MIT License - See LICENSE file for details
+**Success Criteria:** Test coverage meets standards, all documented, system stable and ready for demonstration
 
 ---
 
-## Acknowledgments
+### Future Expansion (Beyond 10-Week MVP)
 
-This project is part of a Master of Applied Artificial Intelligence capstone.
+**Phase 8: Instructor & Admin Interfaces**
+- Case creation and modification tools
+- Student progress tracking and analytics
+- Grade management
 
-Thank you to:
-- Faculty advisors for guidance and feedback
-- The open-source community for tools and libraries
-- Contributors and collaborators
+**Phase 9: Cloud Deployment & CI/CD**
+- Docker containerization
+- GitHub Actions pipelines
+- Cloud hosting options
+- Automated testing and deployment
 
----
-
-## Contact & Support
-
-- **Issues & Bugs:** Open a GitHub issue
-- **Discussions:** Use GitHub Discussions
-- **Documentation:** See `docs/` folder and root-level documentation files
-
----
-
-**Last Updated:** December 2025  
-**Status:** Project initialization and planning complete - Ready for Phase 1 development
+**Phase 10: Advanced Features**
+- Conversational tutor mode
+- Agent collaboration visualization
+- Additional investigative themes
+- Performance optimization
