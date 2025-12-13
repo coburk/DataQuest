@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,4 +19,9 @@
     <Compile Remove="src\DataQuest\Services\Database\**\*.cs" />
   </ItemGroup>
 
+  <!-- Exclude server-side code -->
+  <ItemGroup>
+    <Compile Remove="src\DataQuest.McpServer\**\*.cs" />
+  </ItemGroup>
+  
 </Project>
